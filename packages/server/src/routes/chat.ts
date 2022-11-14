@@ -31,7 +31,8 @@ router.post("/:roomId", async (request, response) => {
       roomId: request.params.roomId
     });
 
-    /* TODO:: socket */
+    const io = request.app.get("io");
+    io.of("/chat").to(request.params.roomId).emit("chat", chat);
 
     response.json({ message: "OK!"});
   } catch(e) {}
