@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "cors": "^2.8.5",
     "create-react-app": "^5.0.1",
     "express-session": "^1.17.3",
@@ -21,6 +23,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@types/express-session": "^1.17.5"
+    "@types/express-session": "^1.17.5",
+    "prettier": "^2.7.1"
   }
 }

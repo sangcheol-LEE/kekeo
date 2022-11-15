@@ -4,12 +4,12 @@ import { Application, NextFunction, request, RequestHandler } from "express";
 import { Server } from "net";
 import { Socket } from "socket.io";
 
-const socket = (server : Server, app : Application, session: RequestHandler) => {
+const socket = (server: Server, app: Application, session: RequestHandler) => {
   const io = SocketIO(server, {
     path: "/socket.io",
     cors: {
-      origin: "*"
-    }
+      origin: "*",
+    },
   });
 
   app.set("io", io);
@@ -24,8 +24,7 @@ const socket = (server : Server, app : Application, session: RequestHandler) => 
     session(request, response, next);
   });
 
-  chat.on("connection", async(request, response) => {
-
+  chat.on("connection", async (request, response) => {
     socket.on("join", (roomId) => {
       socket.join(roomId);
     });

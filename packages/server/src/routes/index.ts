@@ -11,4 +11,4 @@ router.use("/chat", chat);
 router.use("/user", user);
 router.use("/room", room);
 
-export default router
+export default router;

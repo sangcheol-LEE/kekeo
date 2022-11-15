@@ -1,19 +1,19 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../sequelize";
-import User from "./user"
+import User from "./user";
 
 const Room = sequelize.define("room", {
-  id :{
-    type : DataTypes.INTEGER,
+  id: {
+    type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement : true
+    autoIncrement: true,
   },
   opponentId: {
-    type : DataTypes.UUID,
+    type: DataTypes.UUID,
     references: {
-      model: User
-    }
-  }
-})
+      model: User,
+    },
+  },
+});
 
 export default Room;

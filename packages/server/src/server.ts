@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import session from "express-session";
-import cors from "cors"
+import cors from "cors";
 
 import sequelize from "./sequelize";
 import routes from "./routes";
@@ -15,24 +15,26 @@ const sessionMiddleware = session({
   saveUninitialized: true, // 세션이 저장되기 전에 언 이니셜라이즈드 상태로 만들어서 저장하겠다라는 설정
   cookie: { secure: false },
   resave: false, // 세션을 언제나 저장할지 정하는 값
-  store: new FileStore()
-})
+  store: new FileStore(),
+});
 
 app.use(sessionMiddleware);
-app.use(cors({
-  origin: "http://localhost:3000",
-  methods: ["GET", "POST", "PUT", 'DELETE'],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
-sequelize.sync({force: true });
+sequelize.sync({ force: true });
 
-app.use("/", routes)
+app.use("/", routes);
 
 const server = app.listen(8000, () => {
-  console.log("start")
+  console.log("start");
 });
 
 socket(server, app, sessionMiddleware);

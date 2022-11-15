@@ -3,26 +3,25 @@ import sequelize from "../sequelize";
 import User from "./user";
 import Room from "./room";
 
-
 const Chat = sequelize.define("chat", {
   id: {
-    type : DataTypes.INTEGER,
-    primaryKey : true,
-    autoIncrement: true
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
   },
   content: DataTypes.STRING,
-  senderId : {
-    type : DataTypes.UUID,
-    references : {
-      model : User,
-    }
+  senderId: {
+    type: DataTypes.UUID,
+    references: {
+      model: User,
+    },
   },
-  roomId : {
+  roomId: {
     type: DataTypes.INTEGER,
-    references : {
-      model : Room,
-    }
-  }
-})
+    references: {
+      model: Room,
+    },
+  },
+});
 
 export default Chat;
