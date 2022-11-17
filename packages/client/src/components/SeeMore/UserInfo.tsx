@@ -34,12 +34,12 @@ const PhoneNumber = styled("p")<{color : string}>`
   font-size: 16px;
   margin : 8px 0 0 0;
   padding : 0;
-  color : ${({ color }) => color }
+  color : ${({ color }) => color };
 `;
 
 interface Props {
   username : string;
-  phoneNumber : string
+  phoneNumber : string;
 }
 
 const UserInfo: React.FC<Props> = ({username,phoneNumber}) => {

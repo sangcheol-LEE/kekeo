@@ -1,4 +1,4 @@
-import axiosInstance from "./index";
+import axiosInstance from "../apis";
 
 
 // 룸 아이디를 인자로 받아 메세지 정보를 가져옵니다.

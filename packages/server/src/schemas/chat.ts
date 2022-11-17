@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
 import sequelize from "../sequelize";
+import { DataTypes } from "sequelize";
 import User from "./user";
 import Room from "./room";
 
@@ -23,5 +23,8 @@ const Chat = sequelize.define("chat", {
     },
   },
 });
+
+Chat.belongsTo(User, { foreignKey: "senderId" });
+Chat.belongsTo(Room, { foreignKey: "roomId" });
 
 export default Chat;

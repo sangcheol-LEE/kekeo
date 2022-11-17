@@ -37,26 +37,42 @@ const Summary = styled('small')`
 const Friends: React.FC = () => {
   const navigate = useNavigate();
 
-  const {data: profileData} = useQuery<AxiosResponse<IProfile>, AxiosError>("fetchMyProfile", fetchMyProfile);
-  const {data: userData} = useQuery<AxiosResponse<{count : number, rows: Array<IUser>}>, AxiosError>("fetchUserList", fetchUserList)
+  const { data: profileData } = useQuery<AxiosResponse<IProfile>, AxiosError>(
+    "fetchMyProfile",
+    fetchMyProfile
+  );
+  const {data: userData} = useQuery<
+    AxiosResponse<{count : number; rows: Array<IUser>}>,
+    AxiosError
+  >("fetchUserList", fetchUserList)
 
-  const {data: chatRoomListData} = useQuery<AxiosResponse<Array<IRoom>>, AxiosError>("fetchChatRoomList", fetchChatRoomList);
+  const {data: chatRoomListData} = useQuery<
+    AxiosResponse<Array<IRoom>>,
+    AxiosError
+  >("fetchChatRoomList", fetchChatRoomList);
 
-  const mutation = useMutation("makeChatRoom", (request: MakeChatRoomRequest) => makeChatRoom(request))
+  const mutation = useMutation("makeChatRoom", (request: MakeChatRoomRequest) =>
+    makeChatRoom(request)
+  );
 
   const handleChatRoomCreate = (opponentId: string) => {
-    const chatRoom = chatRoomListData?.data.find(chatRoom => chatRoom.opponentId === opponentId)
+    const chatRoom = chatRoomListData?.data.find(
+        (chatRoom) => chatRoom.opponentId === opponentId
+    );
 
     if(chatRoom) {
       navigate(`/rooms/${chatRoom.id}`)
     } else {
-      mutation.mutate({
-        opponentId
-      }, {
-        onSuccess: (data) => {
-          navigate(`/room/${data.data.id}`)
+      mutation.mutate(
+        {
+          opponentId
         }
-      })
+        ,{
+          onSuccess: (data) => {
+            navigate(`/rooms/${data.data.id}`)
+          },
+        }
+      );
     }
   }
   return (

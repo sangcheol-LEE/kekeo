@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
 import sequelize from "../sequelize";
+import { DataTypes } from "sequelize";
 import User from "./user";
 
 const Room = sequelize.define("room", {
@@ -15,5 +15,7 @@ const Room = sequelize.define("room", {
     },
   },
 });
+
+Room.belongsTo(User, { foreignKey: "opponentId" });
 
 export default Room;

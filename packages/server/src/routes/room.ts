@@ -1,4 +1,5 @@
-import { request, response, Router } from "express";
+import { Router } from "express";
+
 import Room from "../schemas/room";
 import User from "../schemas/user";
 
