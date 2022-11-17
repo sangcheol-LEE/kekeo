@@ -84,12 +84,8 @@ const Lobby: React.FC = () => {
   const handleLogin = () => {
     mutation.mutate((username), {
       onSuccess: (data) => {
-        try {
           if(data?.statusText === "OK") {
-            navigate("/friends")
-          }
-        }catch(e) {
-          return console.log(e)
+            navigate("/friends");
         }
       }
     })
@@ -103,11 +99,16 @@ const Lobby: React.FC = () => {
         </LogoWrapper>
 
         <InputWrapper>
-          <Input placeholder="이름을 입력하세요." borderColor={theme.colors.gray[900]} onChange={handleChange}/>
+          <Input
+            placeholder="이름을 입력하세요."
+            borderColor={theme.colors.gray[900]}
+            onChange={handleChange}/>
         </InputWrapper>
 
         <ButtonWrapper>
-          <Button onClick={handleLogin} backgroundColor={theme.colors.primary}>Login</Button>
+          <Button
+            onClick={handleLogin}
+            backgroundColor={theme.colors.primary}>Login</Button>
         </ButtonWrapper>
       </Container>
     </Base>

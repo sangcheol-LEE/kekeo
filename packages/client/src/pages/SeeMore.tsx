@@ -4,7 +4,10 @@ import TopNavigation from "../components/TopNavigation";
 import BottomNavigation from "../components/BottomNavigation";
 import UserInfo from "../components/SeeMore/UserInfo";
 import IconButtonList from "../components/SeeMore/IconButtonList";
-
+import { useQuery } from "react-query";
+import { AxiosError, AxiosResponse } from "axios";
+import { IProfile } from "../types";
+import { fetchMyProfile } from "../apis/userApi";
 
 const Base = styled("div")`
   width: 100%;
@@ -20,11 +23,21 @@ const Container = styled("div")`
 
 
 const SeeMore: React.FC = () => {
+  const { data: profileData } = useQuery<AxiosResponse<IProfile>, AxiosError>(
+    "fetchMyProfile",
+    fetchMyProfile
+  );
   return (
   <Base>
     <Container>
       <TopNavigation title={"More"} />
-      <UserInfo username="이안" phoneNumber="010-7777-7777"/>
+      {
+        profileData && (
+          <UserInfo
+            username={profileData?.data.username}
+            phoneNumber="010-7777-7777"
+          />
+      )}
       <IconButtonList/>
       <BottomNavigation />
     </Container>

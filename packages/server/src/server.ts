@@ -8,6 +8,8 @@ import socket from "./socket";
 
 const FileStore = require("session-file-store")(session);
 
+require("dotenv").config();
+
 const app: Application = express();
 
 const sessionMiddleware = session({
@@ -20,6 +22,7 @@ const sessionMiddleware = session({
 
 app.use(sessionMiddleware);
 app.use(
+  // for cors
   cors({
     origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"],
